@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Valuation Room</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: #f9fbfd;
+  color: #1e293b;
+  scroll-behavior: smooth;
+}
+
+/* NAVBAR */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.menu {
+  display: flex;
+  gap: 30px;
+  position: relative;
+}
+
+.menu div {
+  cursor: pointer;
+  position: relative;
+}
+
+/* DROPDOWN */
+.dropdown {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  background: white;
+  border: 1px solid #e2e8f0;
+  padding: 10px;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.menu .more:hover .dropdown {
+  display: flex;
+}
+
+/* HERO */
+.hero {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+}
+
+.hero h1 {
+  font-size: 42px;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  color: #64748b;
+  max-width: 600px;
+}
+
+/* SECTION */
+.section {
+  padding: 100px 60px;
+}
+
+/* OFFERINGS */
+.offering {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 60px;
+  opacity: 0;
+  transform: translateX(100px);
+  transition: 0.8s;
+}
+
+.offering.left {
+  flex-direction: row-reverse;
+  transform: translateX(-100px);
+}
+
+.offering.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.offering img {
+  width: 300px;
+}
+
+.offering-text {
+  max-width: 500px;
+}
+
+/* WHY US */
+.why {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.why-box {
+  flex: 1;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 15px;
+  border: 1px solid #e2e8f0;
+  transition: 0.3s;
+}
+
+.why-box:hover {
+  transform: translateY(-10px);
+}
+
+/* FADE ANIMATION */
+.fade {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 0.8s;
+}
+
+.fade.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="logo">The Valuation Room</div>
+
+  <div class="menu">
+    <div>Stocks</div>
+    <div>F&O</div>
+    <div>Mutual Fund</div>
+    <div>ETF</div>
+
+    <div class="more">
+      More ▾
+      <div class="dropdown">
+        <div>Commodity</div>
+        <div>Forex</div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <h1>Understand Markets Like Never Before</h1>
+    <p>
+      A modern platform to explore stocks, derivatives, mutual funds and more.
+      Built for clarity, precision and smart investing.
+    </p>
+  </div>
+</section>
+
+<!-- OFFERINGS -->
+<section class="section">
+  <h2 style="text-align:center; margin-bottom:50px;">What We Offer</h2>
+
+  <div class="offering">
+    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135706.png">
+    <div class="offering-text">
+      <h3>Investment Banking</h3>
+      <p>Professional financial advisory and capital management solutions.</p>
+    </div>
+  </div>
+
+  <div class="offering left">
+    <img src="https://cdn-icons-png.flaticon.com/512/2331/2331970.png">
+    <div class="offering-text">
+      <h3>Portfolio Management</h3>
+      <p>Smart allocation strategies to maximize long-term returns.</p>
+    </div>
+  </div>
+
+  <div class="offering">
+    <img src="https://cdn-icons-png.flaticon.com/512/2920/2920277.png">
+    <div class="offering-text">
+      <h3>Market Analysis</h3>
+      <p>Deep insights backed by research and financial data.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="section">
+  <h2 style="text-align:center; margin-bottom:50px;">Why Choose Us</h2>
+
+  <div class="why">
+    <div class="why-box fade">
+      <h3>Data Driven</h3>
+      <p>Decisions backed by real financial analysis.</p>
+    </div>
+
+    <div class="why-box fade">
+      <h3>Simple UI</h3>
+      <p>Clean and intuitive user experience.</p>
+    </div>
+
+    <div class="why-box fade">
+      <h3>Trusted Insights</h3>
+      <p>Reliable information you can depend on.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+// SCROLL ANIMATIONS
+const elements = document.querySelectorAll('.offering, .fade');
+
+window.addEventListener('scroll', () => {
+  elements.forEach(el => {
+    const position = el.getBoundingClientRect().top;
+    if(position < window.innerHeight - 100){
+      el.classList.add('show');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
