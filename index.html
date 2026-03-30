@@ -4,250 +4,118 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Valuation Room</title>
-
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{background:#f8fbff;color:#1f2937}
 
-body {
-  background: #f9fbfd;
-  color: #1e293b;
-  scroll-behavior: smooth;
-}
-
-/* NAVBAR */
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 60px;
-  background: #ffffff;
-  border-bottom: 1px solid #e2e8f0;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.logo {
-  font-weight: bold;
-  font-size: 20px;
-}
-
-.menu {
-  display: flex;
-  gap: 30px;
-  position: relative;
-}
-
-.menu div {
-  cursor: pointer;
-  position: relative;
-}
-
-/* DROPDOWN */
-.dropdown {
-  position: absolute;
-  top: 30px;
-  right: 0;
-  background: white;
-  border: 1px solid #e2e8f0;
-  padding: 10px;
-  display: none;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.menu .more:hover .dropdown {
-  display: flex;
-}
+/* NAV */
+nav{display:flex;justify-content:space-between;align-items:center;padding:15px 40px;background:white;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,0.05)}
+nav h2{font-size:18px}
+nav ul{display:flex;gap:25px;list-style:none}
+nav ul li{cursor:pointer;color:#374151}
 
 /* HERO */
-.hero {
-  height: 90vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 40px;
+.hero{height:90vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;background:linear-gradient(135deg,#eef4ff,#ffffff)}
+.hero h1{font-size:3rem;animation:fadeUp 1s ease}
+.hero p{margin-top:15px;color:#6b7280;max-width:600px;animation:fadeUp 1.5s ease}
+.buttons{margin-top:25px;animation:fadeUp 2s ease}
+.btn{padding:12px 20px;border-radius:8px;border:none;margin:5px;cursor:pointer}
+.primary{background:#2563eb;color:white}
+.secondary{border:1px solid #2563eb;color:#2563eb;background:transparent}
+
+/* SECTIONS */
+.section{padding:70px 20px;text-align:center}
+.section h2{margin-bottom:40px;font-size:2rem}
+.cards{display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
+.card{background:white;padding:25px;width:260px;border-radius:14px;box-shadow:0 10px 25px rgba(0,0,0,0.05);transition:0.3s;opacity:0;transform:translateY(40px)}
+.card.show{opacity:1;transform:translateY(0)}
+.card:hover{transform:translateY(-10px)}
+.light{background:#f1f5f9}
+
+/* FOOTER */
+footer{text-align:center;padding:30px;color:#6b7280}
+
+/* MOBILE */
+@media(max-width:768px){
+nav{padding:15px 20px}
+nav ul{display:none}
+.hero h1{font-size:2rem}
+.hero p{font-size:14px}
+.cards{flex-direction:column;align-items:center}
 }
 
-.hero h1 {
-  font-size: 42px;
-  margin-bottom: 20px;
-}
-
-.hero p {
-  color: #64748b;
-  max-width: 600px;
-}
-
-/* SECTION */
-.section {
-  padding: 100px 60px;
-}
-
-/* OFFERINGS */
-.offering {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 60px;
-  opacity: 0;
-  transform: translateX(100px);
-  transition: 0.8s;
-}
-
-.offering.left {
-  flex-direction: row-reverse;
-  transform: translateX(-100px);
-}
-
-.offering.show {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.offering img {
-  width: 300px;
-}
-
-.offering-text {
-  max-width: 500px;
-}
-
-/* WHY US */
-.why {
-  display: flex;
-  justify-content: space-between;
-  gap: 30px;
-}
-
-.why-box {
-  flex: 1;
-  padding: 30px;
-  background: #ffffff;
-  border-radius: 15px;
-  border: 1px solid #e2e8f0;
-  transition: 0.3s;
-}
-
-.why-box:hover {
-  transform: translateY(-10px);
-}
-
-/* FADE ANIMATION */
-.fade {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: 0.8s;
-}
-
-.fade.show {
-  opacity: 1;
-  transform: translateY(0);
+/* ANIMATION */
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(30px)}
+to{opacity:1;transform:translateY(0)}
 }
 </style>
 </head>
-
 <body>
 
-<!-- NAVBAR -->
 <nav>
-  <div class="logo">The Valuation Room</div>
-
-  <div class="menu">
-    <div>Stocks</div>
-    <div>F&O</div>
-    <div>Mutual Fund</div>
-    <div>ETF</div>
-
-    <div class="more">
-      More ▾
-      <div class="dropdown">
-        <div>Commodity</div>
-        <div>Forex</div>
-      </div>
-    </div>
-  </div>
+<h2>The Valuation Room</h2>
+<ul>
+<li>Stocks</li>
+<li>F&O</li>
+<li>Mutual Fund</li>
+<li>ETF</li>
+<li>More</li>
+</ul>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
-  <div>
-    <h1>Understand Markets Like Never Before</h1>
-    <p>
-      A modern platform to explore stocks, derivatives, mutual funds and more.
-      Built for clarity, precision and smart investing.
-    </p>
-  </div>
+<div>
+<h1>Understand Markets Like Never Before</h1>
+<p>A modern platform to explore stocks, derivatives, mutual funds and more.</p>
+<div class="buttons">
+<button class="btn primary">Explore</button>
+<button class="btn secondary">Portfolio</button>
+</div>
+</div>
 </section>
 
-<!-- OFFERINGS -->
 <section class="section">
-  <h2 style="text-align:center; margin-bottom:50px;">What We Offer</h2>
-
-  <div class="offering">
-    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135706.png">
-    <div class="offering-text">
-      <h3>Investment Banking</h3>
-      <p>Professional financial advisory and capital management solutions.</p>
-    </div>
-  </div>
-
-  <div class="offering left">
-    <img src="https://cdn-icons-png.flaticon.com/512/2331/2331970.png">
-    <div class="offering-text">
-      <h3>Portfolio Management</h3>
-      <p>Smart allocation strategies to maximize long-term returns.</p>
-    </div>
-  </div>
-
-  <div class="offering">
-    <img src="https://cdn-icons-png.flaticon.com/512/2920/2920277.png">
-    <div class="offering-text">
-      <h3>Market Analysis</h3>
-      <p>Deep insights backed by research and financial data.</p>
-    </div>
-  </div>
+<h2>Market Insights</h2>
+<div class="cards">
+<div class="card">Stock Trends</div>
+<div class="card">F&O Analysis</div>
+<div class="card">ETF Movements</div>
+</div>
 </section>
 
-<!-- WHY US -->
+<section class="section light">
+<h2>Investment Ideas</h2>
+<div class="cards">
+<div class="card">Long-Term Picks</div>
+<div class="card">Short-Term Trades</div>
+<div class="card">Safe Investments</div>
+</div>
+</section>
+
 <section class="section">
-  <h2 style="text-align:center; margin-bottom:50px;">Why Choose Us</h2>
-
-  <div class="why">
-    <div class="why-box fade">
-      <h3>Data Driven</h3>
-      <p>Decisions backed by real financial analysis.</p>
-    </div>
-
-    <div class="why-box fade">
-      <h3>Simple UI</h3>
-      <p>Clean and intuitive user experience.</p>
-    </div>
-
-    <div class="why-box fade">
-      <h3>Trusted Insights</h3>
-      <p>Reliable information you can depend on.</p>
-    </div>
-  </div>
+<h2>Why Us</h2>
+<div class="cards">
+<div class="card">Data Driven</div>
+<div class="card">Beginner Friendly</div>
+<div class="card">Advanced Tools</div>
+</div>
 </section>
+
+<footer>
+© 2026 The Valuation Room
+</footer>
 
 <script>
-// SCROLL ANIMATIONS
-const elements = document.querySelectorAll('.offering, .fade');
-
-window.addEventListener('scroll', () => {
-  elements.forEach(el => {
-    const position = el.getBoundingClientRect().top;
-    if(position < window.innerHeight - 100){
-      el.classList.add('show');
-    }
-  });
+const cards=document.querySelectorAll('.card');
+window.addEventListener('scroll',()=>{
+cards.forEach(card=>{
+const top=card.getBoundingClientRect().top;
+if(top<window.innerHeight-50){
+card.classList.add('show');
+}
+});
 });
 </script>
 
