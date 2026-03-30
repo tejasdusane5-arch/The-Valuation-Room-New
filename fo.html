@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>F&O - The Valuation Room</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{background:#f8fbff;color:#1f2937}
+
+nav{display:flex;justify-content:space-between;align-items:center;padding:15px 40px;background:white;box-shadow:0 2px 10px rgba(0,0,0,0.05)}
+
+.hero{padding:60px 20px;text-align:center;background:linear-gradient(135deg,#eef4ff,#ffffff)}
+.hero h1{font-size:2.5rem;animation:fadeUp 1s ease}
+.hero p{margin-top:10px;color:#6b7280}
+
+.search-box{margin-top:20px}
+.search-box input{
+  padding:12px 18px;
+  width:300px;
+  max-width:90%;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+
+.section{padding:60px 20px}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+.card{
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 10px 20px rgba(0,0,0,0.05);
+  transition:0.3s;
+  opacity:0;
+  transform:translateY(30px);
+}
+.card.show{opacity:1;transform:translateY(0)}
+.card:hover{transform:translateY(-8px)}
+
+@media(max-width:768px){
+.hero h1{font-size:1.8rem}
+}
+
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1;transform:translateY(0)}
+}
+</style>
+</head>
+<body>
+
+<nav>
+<h2>The Valuation Room</h2>
+</nav>
+
+<section class="hero">
+<h1>F&O Market Dashboard</h1>
+<p>Analyze derivatives, options and futures like a pro</p>
+<div class="search-box">
+<input type="text" id="search" placeholder="Search stock for F&O...">
+</div>
+</section>
+
+<section class="section">
+<div class="grid" id="foGrid"></div>
+</section>
+
+<script>
+const foStocks = [
+"NIFTY","BANKNIFTY","Reliance","TCS","HDFC Bank","Infosys","ICICI Bank","ITC","SBIN","Axis Bank",
+"Kotak Bank","L&T","Bharti Airtel","Maruti","Wipro","HCL Tech","Tata Steel","JSW Steel","ONGC","Coal India"
+];
+
+const grid = document.getElementById('foGrid');
+
+function display(list){
+  grid.innerHTML='';
+  list.forEach(stock=>{
+    const div=document.createElement('div');
+    div.className='card';
+    div.innerHTML=`<h3>${stock}</h3><p>View Option Chain & OI</p>`;
+    grid.appendChild(div);
+  });
+}
+
+display(foStocks);
+
+// search
+const search=document.getElementById('search');
+search.addEventListener('input',()=>{
+  const value=search.value.toLowerCase();
+  const filtered=foStocks.filter(s=>s.toLowerCase().includes(value));
+  display(filtered);
+});
+
+// animation
+window.addEventListener('scroll',()=>{
+  document.querySelectorAll('.card').forEach(card=>{
+    const top=card.getBoundingClientRect().top;
+    if(top<window.innerHeight-50){
+      card.classList.add('show');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
